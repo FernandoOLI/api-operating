@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class VendedoresServiceImpl implements VendedoresService {
@@ -31,41 +32,34 @@ public class VendedoresServiceImpl implements VendedoresService {
     private AtuacaoServiceImpl atuacaoServiceImpl;
 
     @CachePut("Vendedor")
-    public VendedorReponseUnit getById(int id) throws SQLException {
+    public VendedorReponseUnit getById(int id) {
         Vendedor vendedor = repository.findById(id);
-        if (vendedor != null) {
-            Atuacao atuacao = repositoryAtuacao.findByRegion(vendedor.getRegion());
-            if (atuacao != null) {
-                return  new VendedorReponseUnit(vendedor.getName(), vendedor.getDataInclusao(), atuacao.getStates());
-            } else return null;
-        } else return null;
+        return new VendedorReponseUnit(vendedor.getName(), vendedor.getDataInclusao(), vendedor.getAtuacao().getStates());
     }
 
     @CachePut("Vendedor")
     public List<VendedorReponseList> getAll() {
         List<Vendedor> vendedores = repository.findAll();
-        List<Atuacao> atuacoes = repositoryAtuacao.findAll();
-
-        return generate(vendedores,atuacoes);
+        return generate(vendedores);
     }
-    
-    private List<VendedorReponseList> generate(List<Vendedor> vendedores, List<Atuacao> atuacoes) {
-        List<VendedorReponseList> result = new ArrayList<VendedorReponseList>();
 
-        vendedores.forEach(vendedor -> {
-            Atuacao atuacao = atuacoes.stream().filter(p -> p.getRegion().equals(vendedor.getRegion())).findFirst().orElse(null);
-            result.add(new VendedorReponseList(vendedor.getName(),
-                    vendedor.getPhone(),vendedor.getAge(),vendedor.getCity(),vendedor.getState(),
-                    atuacao.getStates()));
-        });
-        return result;
+    private List<VendedorReponseList> generate(List<Vendedor> vendedores) {
+
+       return vendedores.stream()
+                .map(vendedor -> new VendedorReponseList(vendedor.getName(),
+                        vendedor.getPhone(), vendedor.getAge(), vendedor.getCity(), vendedor.getState(),
+                        vendedor.getAtuacao().getStates()))
+                .collect(Collectors.toList());
+
     }
 
     @CachePut("Vendedor")
     public ResponseEntity<String> insert(Vendedor vendedor) {
         if (validateCreate(vendedor)) {
             vendedor.setDataInclusao(new Date());
-            if (validateRegionAndState(vendedor)) {
+            Atuacao atuacao = validateRegionAndState(vendedor);
+            if (atuacao != null) {
+                vendedor.setAtuacao(atuacao);
                 repository.save(vendedor);
                 return new ResponseEntity<>("Dados inseridos com sucesso!", HttpStatus.OK);
             } else
@@ -79,11 +73,8 @@ public class VendedoresServiceImpl implements VendedoresService {
         return repository.findById(vendedor.getId()) == null;
     }
 
-    private boolean validateRegionAndState(Vendedor vendedor) {
-        Atuacao atuacao = atuacaoServiceImpl.getByRegion(vendedor.getRegion());
-        if (atuacao == null)
-            return false;
-        else return atuacao.getStates().contains(vendedor.getState());
+    private Atuacao validateRegionAndState(Vendedor vendedor) {
+        return  atuacaoServiceImpl.getByRegion(vendedor.getRegion());
     }
 
 }

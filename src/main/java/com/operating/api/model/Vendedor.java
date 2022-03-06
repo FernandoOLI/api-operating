@@ -31,8 +31,20 @@ public class Vendedor {
     @Column(name = "state", nullable = false)
     private String state;
 
-    @Column(name = "region", nullable = false)
+    @Column(name = "region", nullable = false, insertable = false, updatable = false)
     private String region;
+
+    @ManyToOne()
+    @JoinColumn(name = "region", referencedColumnName = "region")
+    private Atuacao atuacao;
+
+    public Atuacao getAtuacao() {
+        return atuacao;
+    }
+
+    public void setAtuacao(Atuacao atuacao) {
+        this.atuacao = atuacao;
+    }
 
     public int getId() {
         return id;

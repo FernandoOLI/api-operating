@@ -25,7 +25,7 @@ public class VendedoresService {
     private AtuacaoRepository repositoryAtuacao;
 
     @Autowired
-    private AtuacaoService atuacaoServiceImpl;
+    private AtuacaoService atuacaoService;
 
     @CachePut("Vendedor")
     public VendedorReponseUnit getById(int id) {
@@ -76,7 +76,7 @@ public class VendedoresService {
     }
 
     private Atuacao validateRegionAndState(Vendedor vendedor) {
-        return atuacaoServiceImpl.getByRegion(vendedor.getRegion());
+        return atuacaoService.getByRegion(vendedor.getRegion());
     }
 
 }

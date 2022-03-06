@@ -22,11 +22,6 @@ public class AtuacaoService {
     }
 
     @CachePut("Atuacao")
-    public List<Atuacao> getAll() {
-        return repository.findAll();
-    }
-
-    @CachePut("Atuacao")
     public ResponseEntity<String> insert(Atuacao atuacao) {
         if (validateCreate(atuacao)) {
             repository.save(atuacao);
@@ -34,7 +29,6 @@ public class AtuacaoService {
         }
         return new ResponseEntity<>("Dados já existentes!", HttpStatus.NO_CONTENT);
     }
-
 
     private boolean validateCreate(Atuacao Atuacao) {
         return repository.findByRegion(Atuacao.getRegion()) == null;

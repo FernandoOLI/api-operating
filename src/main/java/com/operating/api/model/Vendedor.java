@@ -11,7 +11,7 @@ public class Vendedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "include_date", nullable = false)
     private Date dataInclusao;
@@ -46,11 +46,11 @@ public class Vendedor {
         this.atuacao = atuacao;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -131,7 +131,7 @@ public class Vendedor {
         if (this == o) return true;
         if (!(o instanceof Vendedor)) return false;
         Vendedor vendedor = (Vendedor) o;
-        return getId() == vendedor.getId() && Objects.equals(getDataInclusao(), vendedor.getDataInclusao()) && Objects.equals(getName(), vendedor.getName()) && Objects.equals(getPhone(), vendedor.getPhone()) && Objects.equals(getAge(), vendedor.getAge()) && Objects.equals(getCity(), vendedor.getCity()) && Objects.equals(getState(), vendedor.getState()) && Objects.equals(getRegion(), vendedor.getRegion());
+        return getId().equals(vendedor.getId())  && Objects.equals(getDataInclusao(), vendedor.getDataInclusao()) && Objects.equals(getName(), vendedor.getName()) && Objects.equals(getPhone(), vendedor.getPhone()) && Objects.equals(getAge(), vendedor.getAge()) && Objects.equals(getCity(), vendedor.getCity()) && Objects.equals(getState(), vendedor.getState()) && Objects.equals(getRegion(), vendedor.getRegion());
     }
 
     @Override

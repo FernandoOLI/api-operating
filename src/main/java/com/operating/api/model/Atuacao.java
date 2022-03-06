@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-@Table(name = "ATUACAO")
+
 @Entity
+@Table(name = "ATUACAO")
 public class Atuacao {
 
     @Id

@@ -1,8 +1,7 @@
-package com.operating.api.service.Atuacao.impl;
+package com.operating.api.service;
 
 import com.operating.api.model.Atuacao;
 import com.operating.api.repository.AtuacaoRepository;
-import com.operating.api.service.Atuacao.AtuacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
@@ -10,10 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class AtuacaoServiceImpl implements AtuacaoService {
+public class AtuacaoService {
 
     @Autowired
     private AtuacaoRepository repository;

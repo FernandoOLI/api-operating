@@ -6,7 +6,6 @@ import com.operating.api.model.VendedorReponseList;
 import com.operating.api.model.VendedorReponseUnit;
 import com.operating.api.repository.AtuacaoRepository;
 import com.operating.api.repository.VendedoresRepository;
-import com.operating.api.service.Vendedores.impl.VendedoresServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +27,7 @@ import static org.mockito.Mockito.when;
 class VendedoresServiceImplTest {
 
     @InjectMocks
-    VendedoresServiceImpl service;
+    VendedoresService service;
 
     @Mock
     private VendedoresRepository repository;

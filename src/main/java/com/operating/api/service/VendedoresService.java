@@ -1,4 +1,4 @@
-package com.operating.api.service.Vendedores.impl;
+package com.operating.api.service;
 
 import com.operating.api.model.Atuacao;
 import com.operating.api.model.Vendedor;
@@ -6,8 +6,6 @@ import com.operating.api.model.VendedorReponseList;
 import com.operating.api.model.VendedorReponseUnit;
 import com.operating.api.repository.AtuacaoRepository;
 import com.operating.api.repository.VendedoresRepository;
-import com.operating.api.service.Atuacao.impl.AtuacaoServiceImpl;
-import com.operating.api.service.Vendedores.VendedoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
@@ -19,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class VendedoresServiceImpl implements VendedoresService {
+public class VendedoresService {
 
     @Autowired
     private VendedoresRepository repository;
@@ -27,12 +25,14 @@ public class VendedoresServiceImpl implements VendedoresService {
     private AtuacaoRepository repositoryAtuacao;
 
     @Autowired
-    private AtuacaoServiceImpl atuacaoServiceImpl;
+    private AtuacaoService atuacaoServiceImpl;
 
     @CachePut("Vendedor")
     public VendedorReponseUnit getById(int id) {
         Vendedor vendedor = repository.findById(id);
-        return new VendedorReponseUnit(vendedor.getName(), vendedor.getDataInclusao(), vendedor.getAtuacao().getStates());
+        if (vendedor != null)
+            return new VendedorReponseUnit(vendedor.getName(), vendedor.getDataInclusao(), vendedor.getAtuacao().getStates());
+        else return null;
     }
 
     @CachePut("Vendedor")

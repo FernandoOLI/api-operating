@@ -3,8 +3,7 @@ package com.operating.api.controller;
 import com.operating.api.model.Vendedor;
 import com.operating.api.model.VendedorReponseList;
 import com.operating.api.model.VendedorReponseUnit;
-import com.operating.api.service.Vendedores.VendedoresService;
-import com.operating.api.service.Vendedores.impl.VendedoresServiceImpl;
+import com.operating.api.service.VendedoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,28 +19,26 @@ import java.util.List;
 public class VendedorController {
 
     @Autowired
-    private VendedoresServiceImpl vendedoresServiceImpl;
-    @Autowired
-    private VendedoresService generalService;
+    private VendedoresService vendedoresService;
 
     @GetMapping(value = "/")
-    public ResponseEntity<List<VendedorReponseList>> allList() throws SQLException {
-        List<VendedorReponseList> produtos = vendedoresServiceImpl.getAll();
+    public ResponseEntity<List<VendedorReponseList>> allList(){
+        List<VendedorReponseList> produtos = vendedoresService.getAll();
         return ResponseEntity.ok().body(produtos);
     }
 
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<VendedorReponseUnit> findById(@PathVariable int id) throws SQLException {
-        VendedorReponseUnit result = vendedoresServiceImpl.getById(id);
+    public ResponseEntity<VendedorReponseUnit> findById(@PathVariable int id){
+        VendedorReponseUnit result = vendedoresService.getById(id);
         if (result != null)
-            return ResponseEntity.ok().body(vendedoresServiceImpl.getById(id));
+            return ResponseEntity.ok().body(vendedoresService.getById(id));
         else return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping(path = "/")
     public ResponseEntity<String> save(@RequestBody Vendedor vendedor) {
-        return vendedoresServiceImpl.insert(vendedor);
+        return vendedoresService.insert(vendedor);
     }
 
 

@@ -7,8 +7,7 @@ import java.util.List;
 public interface VendedoresRepository extends JpaRepository<Vendedor, Long> {
 
     List<Vendedor> findAll();
-
-    List<Vendedor> findByName(String Username);
+    Vendedor findByNameAndPhoneAndAgeAndCityAndStateAndRegion(String Username, String phone,int age, String city,String state,String region);
 
     Vendedor findById(int user_id);
 

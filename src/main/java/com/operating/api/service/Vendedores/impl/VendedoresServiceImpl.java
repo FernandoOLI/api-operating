@@ -43,7 +43,7 @@ public class VendedoresServiceImpl implements VendedoresService {
 
     private List<VendedorReponseList> generate(List<Vendedor> vendedores) {
 
-       return vendedores.stream()
+        return vendedores.stream()
                 .map(vendedor -> new VendedorReponseList(vendedor.getName(),
                         vendedor.getPhone(), vendedor.getAge(), vendedor.getCity(), vendedor.getState(),
                         vendedor.getAtuacao().getStates()))
@@ -68,11 +68,15 @@ public class VendedoresServiceImpl implements VendedoresService {
     }
 
     private boolean validateCreate(Vendedor vendedor) {
-        return repository.findById(vendedor.getId()) == null;
+
+        return repository.findByNameAndPhoneAndAgeAndCityAndStateAndRegion(vendedor.getName(), vendedor.getPhone(),
+                vendedor.getAge(), vendedor.getCity(), vendedor.getState(),
+                vendedor.getRegion()) == null;
+
     }
 
     private Atuacao validateRegionAndState(Vendedor vendedor) {
-        return  atuacaoServiceImpl.getByRegion(vendedor.getRegion());
+        return atuacaoServiceImpl.getByRegion(vendedor.getRegion());
     }
 
 }

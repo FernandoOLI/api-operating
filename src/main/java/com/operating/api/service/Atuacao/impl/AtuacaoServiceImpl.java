@@ -25,7 +25,7 @@ public class AtuacaoServiceImpl implements AtuacaoService {
 
     @CachePut("Atuacao")
     public List<Atuacao> getAll() {
-        return repository.findAll().stream().collect(Collectors.toList());
+        return repository.findAll();
     }
 
     @CachePut("Atuacao")
@@ -34,7 +34,7 @@ public class AtuacaoServiceImpl implements AtuacaoService {
             repository.save(atuacao);
             return new ResponseEntity<>("Dados inseridos com sucesso!", HttpStatus.OK);
         }
-        return new ResponseEntity<>("Dados já existentes!", HttpStatus.CONFLICT);
+        return new ResponseEntity<>("Dados já existentes!", HttpStatus.NO_CONTENT);
     }
 
 

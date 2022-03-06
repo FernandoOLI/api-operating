@@ -19,8 +19,8 @@ public class AtuacaoServiceImpl implements AtuacaoService {
     private AtuacaoRepository repository;
 
     @CachePut("Atuacao")
-    public List<Atuacao> getByRegion(String region) {
-        return repository.findByRegion(region).stream().collect(Collectors.toList());
+    public Atuacao getByRegion(String region) {
+        return repository.findByRegion(region);
     }
 
     @CachePut("Atuacao")
@@ -39,7 +39,7 @@ public class AtuacaoServiceImpl implements AtuacaoService {
 
 
     private boolean validateCreate(Atuacao Atuacao) {
-        return repository.findByRegion(Atuacao.getRegion()).isEmpty();
+        return repository.findByRegion(Atuacao.getRegion()) == null;
     }
 
 

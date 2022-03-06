@@ -10,7 +10,7 @@ public interface VendedoresRepository extends JpaRepository<Vendedor, Long> {
 
     List<Vendedor> findByName(String Username);
 
-    List<Vendedor> findById(int user_id);
+    Vendedor findById(int user_id);
 
     void deleteById(int user_id);
 

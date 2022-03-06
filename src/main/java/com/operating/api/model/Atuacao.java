@@ -1,6 +1,6 @@
 package com.operating.api.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.operating.api.util.ListToStringConverter;
 
 import javax.persistence.*;
 import java.util.List;

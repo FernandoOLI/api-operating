@@ -1,4 +1,4 @@
-package com.operating.api.model;
+package com.operating.api.util;
 
 import javax.persistence.AttributeConverter;
 import java.util.Arrays;

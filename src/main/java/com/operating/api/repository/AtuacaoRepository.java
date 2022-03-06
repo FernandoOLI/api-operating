@@ -9,6 +9,6 @@ public interface AtuacaoRepository extends JpaRepository<Atuacao, Long> {
 
     List<Atuacao> findAll();
 
-    List<Atuacao> findByRegion(String region);
+    Atuacao findByRegion(String region);
 
 }

@@ -18,6 +18,16 @@ Executar o arquivo Main que se encontra no caminho:
 src/main/java/com/operating/api/Main.java
 ```
 
+### H2 Database
+Para consultar os valores salvos no banco de dados, consultar:
+```cmd
+http://localhost:8080/h2-console
+```
+Url jdbc:h2:mem:operatingDB
+#####
+Driver org.h2.Driver
+#####
+Usuário é "sa" e a senha é vazia
 
 #### Próximos Passos
 

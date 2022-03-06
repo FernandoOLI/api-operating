@@ -10,6 +10,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * <h2> Service</h2>
+ * Atuacao controler possue somente o método post,
+ * entretanto é feita a validação se existe a região antes de salvar
+ * caso já exista é retornado o code 204
+ */
+
 @Service
 public class AtuacaoService {
 
@@ -23,16 +30,11 @@ public class AtuacaoService {
 
     @CachePut("Atuacao")
     public ResponseEntity<String> insert(Atuacao atuacao) {
-        if (validateCreate(atuacao)) {
+        if (getByRegion(atuacao.getRegion()) == null) {
             repository.save(atuacao);
             return new ResponseEntity<>("Dados inseridos com sucesso!", HttpStatus.OK);
         }
         return new ResponseEntity<>("Dados já existentes!", HttpStatus.NO_CONTENT);
     }
-
-    private boolean validateCreate(Atuacao Atuacao) {
-        return repository.findByRegion(Atuacao.getRegion()) == null;
-    }
-
 
 }

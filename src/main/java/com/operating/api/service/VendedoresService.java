@@ -16,6 +16,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * <h2> Service</h2>
+ * Vendedores controler possue o método post, getAll e getId,
+ * é feita a validação em todos os métodos
+ * caso já exista é retornado o code 204
+ */
+
 @Service
 public class VendedoresService {
 

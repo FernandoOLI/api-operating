@@ -66,7 +66,7 @@ class AtuacoesServiceTest {
     void should_bring_insert_atuacao() {
         when(atuacaoRepository.findByRegion(atuacao.getRegion())).thenReturn(null);
         ResponseEntity<String> response = service.insert(atuacao);
-        assertThat(response.getStatusCode(), is(equalTo(HttpStatus.OK)));
+        assertThat(response.getStatusCode(), is(equalTo(HttpStatus.CREATED)));
         verify(atuacaoRepository).findByRegion(atuacao.getRegion());
     }
 

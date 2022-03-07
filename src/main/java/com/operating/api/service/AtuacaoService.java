@@ -32,7 +32,7 @@ public class AtuacaoService {
     public ResponseEntity<String> insert(Atuacao atuacao) {
         if (getByRegion(atuacao.getRegion()) == null) {
             repository.save(atuacao);
-            return new ResponseEntity<>("Dados inseridos com sucesso!", HttpStatus.OK);
+            return new ResponseEntity<>("Dados inseridos com sucesso!", HttpStatus.CREATED);
         }
         return new ResponseEntity<>("Dados já existentes!", HttpStatus.NO_CONTENT);
     }

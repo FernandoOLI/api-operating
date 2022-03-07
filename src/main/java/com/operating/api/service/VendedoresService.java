@@ -66,7 +66,7 @@ public class VendedoresService {
             if (atuacao != null) {
                 vendedor.setAtuacao(atuacao);
                 repository.save(vendedor);
-                return new ResponseEntity<>("Dados inseridos com sucesso!", HttpStatus.OK);
+                return new ResponseEntity<>("Dados inseridos com sucesso!", HttpStatus.CREATED);
             } else
                 return new ResponseEntity<>("Valor do Estado e/ou Região inseridos não existentes em atuacao!",
                         HttpStatus.NO_CONTENT);

@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "338d6a95-c0d1-4cf7-aae6-5d3d118a19f5",
+		"name": "Operating",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Vendedores",
+			"item": [
+				{
+					"name": "Vendedor Post Values",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"warning": "Key contains invalid characters.",
+								"key": "application/json",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 2,\r\n  \"username\": \"Larissa\",\r\n  \"password\": \"admin\",\r\n  \"email\": \"larissa_vieira08@hotmail.com\",\r\n  \"createdOn\": \"2020-01-09\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/general/save/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"general",
+								"save",
+								""
+							]
+						},
+						"description": "Requisição HTTP GET\nretorna todos os valores da TABELA-TESTE"
+					},
+					"response": []
+				},
+				{
+					"name": "Vendedor Get All Values",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/general/values",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"general",
+								"values"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendedor Get by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/general/values",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"general",
+								"values"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Atuacao",
+			"item": [
+				{
+					"name": "Atuacao Post Values",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"warning": "Key contains invalid characters.",
+								"key": "application/json",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 2,\r\n  \"username\": \"Larissa\",\r\n  \"password\": \"admin\",\r\n  \"email\": \"larissa_vieira08@hotmail.com\",\r\n  \"createdOn\": \"2020-01-09\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/general/save/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"general",
+								"save",
+								""
+							]
+						},
+						"description": "Requisição HTTP GET\nretorna todos os valores da TABELA-TESTE"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
